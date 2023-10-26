@@ -67,8 +67,6 @@ function renderQuestions() {
     currentQuestionIndex < questions.length;
     currentQuestionIndex++
   ) {
-    questionContainer.innerHTML = "";
-
     var currentQuestion = questions[currentQuestionIndex];
     var qst = document.createElement("h3");
     qst.innerText = currentQuestion.q;
@@ -80,10 +78,10 @@ function renderQuestions() {
       btn.setAttribute("value", currentChoice);
       btn.textContent = currentChoice;
       questionContainer.appendChild(btn);
+      btn.addEventListener("click", checkAnswer);
     }
-    btn.addEventListener("click", checkAnswer);
-
-    function checkAnswer() {
+    function checkAnswer(event) {
+      console.log(event.target);
       if (btn.value === questions[currentQuestionIndex].a) {
         score += 10;
         answer.innerText = "correct!";
