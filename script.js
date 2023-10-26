@@ -1,9 +1,9 @@
 var startbtn = document.querySelector("#start-quiz ");
 var timerElement = document.querySelector("#timer-count");
 var answer = document.querySelector(".answer");
-
+var questionContainer = document.getElementById("questionContainer");
 var timerCount;
-var i = 0;
+var currentQuestionIndex = 0;
 var btn;
 var score = 0;
 
@@ -58,30 +58,31 @@ startbtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
   renderQuestions();
+  console.log("start quiz function");
 }
 
 function renderQuestions() {
-  while (i < questions.length) {
-    var qst = document.createElement("h1");
-    console.log(qst);
-    document.body.append(qst);
-    qst.textcontent = questions[i].q;
-    for (j = 0; j < questions[i].choices.length; j++) {
-      btn = document.createElement("button");
-      btn.innerHTML = questions[i].choices[j];
-      crossOriginIsolated.log(btn);
-      qst.appendChild(btn);
-    }
-    btn.addEventListener("click", checkAnswer);
+  var currentQuestion = questions[currentQuestionIndex];
+  var qst = document.createElement("h3");
+  qst.innerText = currentQuestion.q;
+  questionContainer.append(qst);
 
-    function checkAnswer() {
-      if (btn.innerHTML === questions[i].a) {
-        score += 10;
-        answer.innerHTML = "correct";
-      } else {
-        answer.innerHTML = "incorrect";
-      }
-      i++;
+  for (j = 0; j < currentQuestion.choices.length; j++) {
+    var currentChoice = currentQuestion.choices[j];
+    btn = document.createElement("button");
+    btn.setAttribute("value", currentChoice);
+    btn.textContent = currentChoice;
+    questionContainer.appendChild(btn);
+  }
+  btn.addEventListener("click", checkAnswer);
+
+  function checkAnswer() {
+    if (btn.value === questions[currentQuestionIndex].a) {
+      score += 10;
+      answer.innerText = "correct";
+    } else {
+      answer.innerText = "incorrect";
     }
+    i++;
   }
 }
