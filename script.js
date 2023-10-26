@@ -64,6 +64,7 @@ function startQuiz() {
 function renderQuestions() {
   while (i < questions.length) {
     var qst = document.createElement("h1");
+    document.append(qst);
     qst.textcontent = questions[i].q;
     for (j = 0; j < questions[i].choices.length; j++) {
       btn = document.createElement("button");
@@ -78,7 +79,6 @@ function renderQuestions() {
         answer.innerHTML = "correct";
       } else {
         answer.innerHTML = "incorrect";
-        score -= 10;
       }
       i++;
     }
