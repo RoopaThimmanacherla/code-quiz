@@ -57,18 +57,19 @@ var questions = [
 startbtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
-  startTimer();
   renderQuestions();
 }
 
 function renderQuestions() {
   while (i < questions.length) {
     var qst = document.createElement("h1");
+    console.log(qst);
     document.body.append(qst);
     qst.textcontent = questions[i].q;
     for (j = 0; j < questions[i].choices.length; j++) {
       btn = document.createElement("button");
       btn.innerHTML = questions[i].choices[j];
+      crossOriginIsolated.log(btn);
       qst.appendChild(btn);
     }
     btn.addEventListener("click", checkAnswer);
