@@ -1,4 +1,4 @@
-var startQuiz = document.querySelector("#start-quiz ");
+var startbtn = document.querySelector("#start-quiz ");
 var timerElement = document.querySelector("#timer-count");
 var answer = document.querySelector(".answer");
 
@@ -54,7 +54,7 @@ var questions = [
   },
 ];
 
-startQuiz.addEventListener("click", startQuiz);
+startbtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
   startTimer();
@@ -64,7 +64,7 @@ function startQuiz() {
 function renderQuestions() {
   while (i < questions.length) {
     var qst = document.createElement("h1");
-    document.append(qst);
+    document.body.append(qst);
     qst.textcontent = questions[i].q;
     for (j = 0; j < questions[i].choices.length; j++) {
       btn = document.createElement("button");
