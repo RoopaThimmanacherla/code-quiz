@@ -62,27 +62,34 @@ function startQuiz() {
 }
 
 function renderQuestions() {
-  var currentQuestion = questions[currentQuestionIndex];
-  var qst = document.createElement("h3");
-  qst.innerText = currentQuestion.q;
-  questionContainer.append(qst);
+  for (
+    currentQuestionIndex = 0;
+    currentQuestionIndex < questions.length;
+    currentQuestionIndex++
+  ) {
+    questionContainer.innerHTML = "";
 
-  for (j = 0; j < currentQuestion.choices.length; j++) {
-    var currentChoice = currentQuestion.choices[j];
-    btn = document.createElement("button");
-    btn.setAttribute("value", currentChoice);
-    btn.textContent = currentChoice;
-    questionContainer.appendChild(btn);
-  }
-  btn.addEventListener("click", checkAnswer);
+    var currentQuestion = questions[currentQuestionIndex];
+    var qst = document.createElement("h3");
+    qst.innerText = currentQuestion.q;
+    questionContainer.append(qst);
 
-  function checkAnswer() {
-    if (btn.value === questions[currentQuestionIndex].a) {
-      score += 10;
-      answer.innerText = "correct";
-    } else {
-      answer.innerText = "incorrect";
+    for (j = 0; j < currentQuestion.choices.length; j++) {
+      var currentChoice = currentQuestion.choices[j];
+      btn = document.createElement("button");
+      btn.setAttribute("value", currentChoice);
+      btn.textContent = currentChoice;
+      questionContainer.appendChild(btn);
     }
-    i++;
+    btn.addEventListener("click", checkAnswer);
+
+    function checkAnswer() {
+      if (btn.value === questions[currentQuestionIndex].a) {
+        score += 10;
+        answer.innerText = "correct!";
+      } else {
+        answer.innerText = "Wrong!";
+      }
+    }
   }
 }
