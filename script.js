@@ -1,6 +1,6 @@
 var startbtn = document.querySelector("#start-quiz ");
 var timerElement = document.querySelector("#timer-count");
-var answer = document.querySelector(".answer");
+var answer = document.querySelector("#answer");
 var questionContainer = document.getElementById("questionContainer");
 var quizStartPage = document.getElementById("startPage");
 var currentQuestionIndex = 0;
@@ -114,9 +114,15 @@ function endQuiz() {
   endMessage.innerHTML = "ALL DONE";
   initials.append(endMessage);
   var elemForm = document.createElement("form");
-  elemForm.appendChild(document.createElement("textarea"));
+  var initialText = document.createElement("textarea");
+  elemForm.appendChild(initialText);
   initials.append(elemForm);
   var submitButton = document.createElement("input");
   submitButton.setAttribute("type", "submit");
   initials.append(submitButton);
+
+  submitButton.addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log(initialText.value);
+  });
 }
