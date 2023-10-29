@@ -6,6 +6,7 @@ var quizStartPage = document.getElementById("startPage");
 var initialSubmitContainer = document.getElementById("initialSubmit");
 var displayHighScores = document.getElementById("highScoreContainer");
 var currentQuestionIndex = 0;
+var highScoresContainers = document.getElementById("highScoresContainers");
 var setHighScores = JSON.parse(localStorage.getItem("setHighScores")) || [];
 
 var btn;
@@ -158,7 +159,8 @@ function endQuiz() {
     displayHighScores.append(clearScores);
 
     clearScores.addEventListener("click", function () {
-      localStorage.removeItem(setHighScores);
+      localStorage.removeItem("setHighScores");
+      highScoresContainers.innerHTML = "";
     });
 
     var playScore = {
@@ -167,11 +169,15 @@ function endQuiz() {
     };
     setHighScores.push(playScore);
     localStorage.setItem("setHighScores", JSON.stringify(setHighScores));
+    renderHighscores();
   });
 }
-for (let i = 0; i < setHighScores.length; i++) {
-  var h4El = document.createElement("h4");
-  h4El.innerHTML = setHighScores[i].initials + ": " + setHighScores[i].score;
-  displayHighScores.appendChild(h4El);
-  console.log(setHighScores[i]);
+function renderHighscores() {
+  highScoresContainers.innerHTML = "";
+  for (let i = 0; i < setHighScores.length; i++) {
+    var h4El = document.createElement("h4");
+    h4El.innerHTML = setHighScores[i].initials + ": " + setHighScores[i].score;
+    highScoresContainers.appendChild(h4El);
+    console.log(setHighScores[i]);
+  }
 }
