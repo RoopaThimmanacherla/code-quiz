@@ -6,12 +6,13 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  font-weight: bold;
 }
 
 #questionContainer {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  align-items: center;
 }
 
 main {
@@ -19,4 +20,28 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+button {
+  width: 220px;
+  height: 50px;
+  margin-top: 10px;
+  background-color: rgb(32, 13, 100);
+  color: aliceblue;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+botton:hover {
+  background-color: #bb26ae;
+}
+
+#answer {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
 }
