@@ -8,10 +8,12 @@ var displayHighScores = document.getElementById("highScoreContainer");
 var currentQuestionIndex = 0;
 var highScoresContainers = document.getElementById("highScoresContainers");
 var setHighScores = JSON.parse(localStorage.getItem("setHighScores")) || [];
+var ViewHighScoreEl = document.getElementById("view-high-scores");
 
 var btn;
 var score = 0;
 var secondsLeft = 50;
+//set of questions in array
 var questions = [
   {
     q: "Inside which HTML do we put the javascript?",
@@ -61,6 +63,7 @@ var questions = [
 
 startbtn.addEventListener("click", startQuiz);
 
+// function to start Quiz when startQuiz button is clicked
 function startQuiz() {
   quizStartPage.innerHTML = "";
   renderQuestions();
@@ -68,6 +71,7 @@ function startQuiz() {
   setTime();
 }
 
+//  function to check answer whether it is correct or wrong!
 function checkAnswer(event) {
   console.log(event.target);
   if (event.target.value === questions[currentQuestionIndex].a) {
@@ -90,6 +94,8 @@ function checkAnswer(event) {
     }
   }, 1000);
 }
+
+// function to display the questions on the page
 function renderQuestions() {
   questionContainer.innerHTML = "";
   var currentQuestion = questions[currentQuestionIndex];
@@ -107,6 +113,7 @@ function renderQuestions() {
   }
 }
 
+//function to set time to questions
 function setTime() {
   var timerInterval = setInterval(function () {
     secondsLeft--;
@@ -118,6 +125,7 @@ function setTime() {
     }
   }, 1000);
 }
+//function to submit initials and highsores once quiz ends
 function endQuiz() {
   questionContainer.innerHTML = "";
 
@@ -131,6 +139,10 @@ function endQuiz() {
   initials.append(scoreMessage);
 
   var elemForm = document.createElement("form");
+  var enterinitials = document.createElement("h3");
+  enterinitials.innerHTML = "Enter Initials:";
+  initials.append(enterinitials);
+
   var initialText = document.createElement("textarea");
   elemForm.appendChild(initialText);
   var submitButton = document.createElement("input");
@@ -181,3 +193,5 @@ function renderHighscores() {
     console.log(setHighScores[i]);
   }
 }
+
+ViewHighScoreEl.addEventListener("click", renderHighscores);
