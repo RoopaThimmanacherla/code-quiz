@@ -166,6 +166,7 @@ function endQuiz() {
       displayHighScores.innerHTML = "";
       quizStartPage.style.display = "block";
       secondsLeft = 50;
+      timerElement.textContent = "Time: " + secondsLeft;
       currentQuestionIndex = 0;
     });
 
