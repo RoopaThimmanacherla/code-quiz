@@ -65,7 +65,7 @@ startbtn.addEventListener("click", startQuiz);
 
 // function to start Quiz when startQuiz button is clicked
 function startQuiz() {
-  quizStartPage.innerHTML = "";
+  quizStartPage.style.display = "none";
   renderQuestions();
   console.log("start quiz function");
   setTime();
@@ -98,6 +98,7 @@ function checkAnswer(event) {
 // function to display the questions on the page
 function renderQuestions() {
   questionContainer.innerHTML = "";
+
   var currentQuestion = questions[currentQuestionIndex];
   var qst = document.createElement("h2");
   qst.innerText = currentQuestion.q;
@@ -149,27 +150,30 @@ function endQuiz() {
   submitButton.setAttribute("type", "submit");
   elemForm.append(submitButton);
   initials.append(elemForm);
-
+  //submit the initials form
   elemForm.addEventListener("submit", function (event) {
     event.preventDefault();
     console.log(initialText.value);
     initialSubmitContainer.innerHTML = "";
     displayHighScores.classList.remove("hide");
-
+    // eventlistener when goback button clicked
     var goBackbtn = document.createElement("button");
     goBackbtn.setAttribute("value", "GoBack");
     goBackbtn.textContent = "GoBack";
     displayHighScores.append(goBackbtn);
 
     goBackbtn.addEventListener("click", function () {
-      displayHighScores.innerHTML = quizStartPage.innerHTML;
+      displayHighScores.innerHTML = "";
+      quizStartPage.style.display = "block";
+      secondsLeft = 50;
+      currentQuestionIndex = 0;
     });
 
     var clearScores = document.createElement("button");
     clearScores.setAttribute("value", "clear high scores");
     clearScores.textContent = "clear high scores";
     displayHighScores.append(clearScores);
-
+    // function to clear scores
     clearScores.addEventListener("click", function () {
       localStorage.removeItem("setHighScores");
       highScoresContainers.innerHTML = "";
@@ -184,7 +188,10 @@ function endQuiz() {
     renderHighscores();
   });
 }
+//render scores to the screen after retriving from local storage
 function renderHighscores() {
+  displayHighScores.classList.remove("hide");
+  quizStartPage.classList.add("hide");
   highScoresContainers.innerHTML = "";
   for (let i = 0; i < setHighScores.length; i++) {
     var h4El = document.createElement("h4");

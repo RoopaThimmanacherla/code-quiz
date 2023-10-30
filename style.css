@@ -8,7 +8,7 @@ header {
   padding: 10px;
   font-weight: bold;
 }
-
+/* makes the questions and answers to display in columns */
 #questionContainer {
   display: flex;
   flex-direction: column;
@@ -21,28 +21,29 @@ main {
   align-items: center;
   flex-direction: column;
 }
-
+/* added the size properties to button */
 button {
   width: 220px;
   height: 50px;
   margin-top: 10px;
   margin-right: 10px;
+  margin-left: 10px;
   background-color: rgb(32, 13, 100);
   color: aliceblue;
   border-radius: 10px;
   font-size: 20px;
 }
-
-botton:hover {
-  background-color: #bb26ae;
-}
-
+/* set displayed result font properties */
 #answer {
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
 }
-
+/* set class to hide content */
 .hide {
   display: none;
+}
+
+textarea {
+  margin-right: 10px;
 }
