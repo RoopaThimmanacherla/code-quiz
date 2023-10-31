@@ -9,7 +9,7 @@ var currentQuestionIndex = 0;
 var highScoresContainers = document.getElementById("highScoresContainers");
 var setHighScores = JSON.parse(localStorage.getItem("setHighScores")) || [];
 var ViewHighScoreEl = document.getElementById("view-high-scores");
-
+var timerInterval;
 var btn;
 var score = 0;
 var secondsLeft = 50;
@@ -116,7 +116,7 @@ function renderQuestions() {
 
 //function to set time to questions
 function setTime() {
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     secondsLeft--;
     score = secondsLeft;
     timerElement.textContent = "Time: " + secondsLeft;
@@ -128,6 +128,8 @@ function setTime() {
 }
 //function to submit initials and highsores once quiz ends
 function endQuiz() {
+  clearInterval(timerInterval);
+
   questionContainer.innerHTML = "";
 
   var initials = document.getElementById("initialSubmit");
