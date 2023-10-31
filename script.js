@@ -172,6 +172,13 @@ function endQuiz() {
       currentQuestionIndex = 0;
     });
 
+    var playScore = {
+      initials: initialText.value,
+      score: score,
+    };
+    setHighScores.push(playScore);
+    localStorage.setItem("setHighScores", JSON.stringify(setHighScores));
+    renderHighscores();
     var clearScores = document.createElement("button");
     clearScores.setAttribute("value", "clear high scores");
     clearScores.textContent = "clear high scores";
@@ -181,14 +188,6 @@ function endQuiz() {
       localStorage.removeItem("setHighScores");
       highScoresContainers.innerHTML = "";
     });
-
-    var playScore = {
-      initials: initialText.value,
-      score: score,
-    };
-    setHighScores.push(playScore);
-    localStorage.setItem("setHighScores", JSON.stringify(setHighScores));
-    renderHighscores();
   });
 }
 //render scores to the screen after retriving from local storage
