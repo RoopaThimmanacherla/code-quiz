@@ -165,7 +165,7 @@ function endQuiz() {
     displayHighScores.append(goBackbtn);
 
     goBackbtn.addEventListener("click", function () {
-      displayHighScores.innerHTML = "";
+      displayHighScores.style.display = "none";
       quizStartPage.style.display = "block";
       secondsLeft = 50;
       timerElement.textContent = "Time: " + secondsLeft;
@@ -197,8 +197,8 @@ function renderHighscores() {
   highScoresContainers.innerHTML = "";
   for (let i = 0; i < setHighScores.length; i++) {
     var h4El = document.createElement("h4");
-    h4El.innerHTML = setHighScores[i].initials + ": " + setHighScores[i].score;
-    highScoresContainers.appendChild(h4El);
+    h4El.innerText = setHighScores[i].initials + ": " + setHighScores[i].score;
+    displayHighScores.appendChild(h4El);
     console.log(setHighScores[i]);
   }
 }
